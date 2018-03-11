@@ -1,6 +1,7 @@
 package app.platter;
 
-import app.view.Context;
+import app.service.platter.model.Context;
+import app.service.platter.model.Platter;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;

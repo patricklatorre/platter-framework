@@ -1,7 +1,7 @@
 package app;
 
 import app.platter.NULLPlatter;
-import app.platter.Platter;
+import app.service.platter.model.Platter;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

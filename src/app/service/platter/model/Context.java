@@ -1,6 +1,5 @@
-package app.view;
+package app.service.platter.model;
 
-import app.controller.Controller;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

@@ -3,7 +3,7 @@ package app.controller.NULL;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import app.controller.Controller;
+import app.service.platter.model.Controller;
 import javafx.fxml.FXML;
 
 public class Default extends Controller

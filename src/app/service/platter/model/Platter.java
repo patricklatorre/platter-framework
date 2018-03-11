@@ -1,6 +1,4 @@
-package app.platter;
-
-import app.view.Context;
+package app.service.platter.model;
 
 public abstract class Platter
 {
