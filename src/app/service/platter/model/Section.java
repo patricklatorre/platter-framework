@@ -6,13 +6,13 @@ import javafx.scene.Scene;
 
 import java.io.IOException;
 
-public class Context
+public class Section
 {
 	private Scene internalScreen;
 	private Parent layout;
 	private Controller controller;
 
-	public Context(String URL) {
+	public Section(String URL) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(URL));
 		this.layout = null;
 		try {
@@ -24,7 +24,7 @@ public class Context
 		this.internalScreen = null;
 	}
 
-	public Context(String URL, int width, int height) {
+	public Section(String URL, int width, int height) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(URL));
 		this.layout = null;
 		try {
