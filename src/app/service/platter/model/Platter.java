@@ -10,8 +10,8 @@ public abstract class Platter
 	/* WINDOW */
 	protected Stage window;
 
-	/* ADAPTER CONTEXT */
-	protected Context nullContext;
+	/* NULL SECTION */
+	protected Section nullSection;
 
 	public int order(){
 		return 0;
