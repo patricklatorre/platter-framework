@@ -15,11 +15,11 @@ public class NULLPlatter extends Platter
 
 
 	/* DECLARE EXTERNAL SCREENS */
-	private Scene nullScreen;
+
 
 	public NULLPlatter() {
 		/* INITIALIZE CONTEXTS */
-		this.nullContext = new Context(NULL_URL);
+		this.nullContext = new Context(NULL_URL, 300, 300);
 
 		/* INITIALIZE SERVICES */
 
@@ -28,21 +28,21 @@ public class NULLPlatter extends Platter
 
 
 		/* INITIALIZE EXTERNAL SCREENS */
-		this.nullScreen = new Scene(nullContext.getLayout(), 300, 300);
+
 	}
 
 	@Override
 	public int serve() {
 		/* APP WINDOW SETUP */
-		Stage window = new Stage();
-		window.setTitle("Platter");
-		window.setMinWidth(1);
-		window.setMinHeight(1);
-		window.initModality(Modality.APPLICATION_MODAL);
+		this.window = new Stage();
+		this.window.setTitle("Platter");
+		this.window.setMinWidth(1);
+		this.window.setMinHeight(1);
+		this.window.initModality(Modality.APPLICATION_MODAL);
 
 		/* APP WINDOW DISPLAY */
-		window.setScene(nullScreen);
-		window.showAndWait();
+		this.window.setScene(this.nullContext.getInternalScreen());
+		this.window.showAndWait();
 
 		return 0;
 	}
