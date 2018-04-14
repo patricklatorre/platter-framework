@@ -31,18 +31,7 @@ public class NULLPlatter extends Platter
 	}
 
 	@Override
-	public int serve() {
-		/* APP WINDOW SETUP */
-		this.window = new Stage();
-		this.window.setTitle("Platter");
-		this.window.setMinWidth(1);
-		this.window.setMinHeight(1);
-		this.window.initModality(Modality.APPLICATION_MODAL);
-
-		/* APP WINDOW DISPLAY */
-		this.window.setScene(this.nullSection.getInternalScreen());
-		this.window.showAndWait();
-
+	public int prepare() {
 		return 0;
 	}
 }
