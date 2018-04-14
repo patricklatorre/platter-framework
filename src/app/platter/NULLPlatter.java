@@ -18,7 +18,7 @@ public class NULLPlatter extends Platter
 
 	public NULLPlatter() {
 		/* INITIALIZE SECTIONS */
-		this.nullSection = new Section(NULL_URL, 300, 300);
+		nullSection = new Section(NULL_URL, 300, 300);
 
 		/* INITIALIZE SERVICES */
 
