@@ -22,7 +22,7 @@ public abstract class Platter
 	protected double MIN_WINDOW_WIDTH;
 	protected double MIN_WINDOW_HEIGHT;
 
-	protected boolean UNIBODY;
+	protected boolean UNIBODY_WINDOW;
 
 
 
@@ -37,7 +37,7 @@ public abstract class Platter
 		FIRST_SCREEN = nullSection.getInternalScreen();
 		MIN_WINDOW_WIDTH = 1;
 		MIN_WINDOW_HEIGHT = 1;
-		UNIBODY = false;
+		UNIBODY_WINDOW = false;
 	}
 
 	public abstract void configure();
@@ -51,7 +51,7 @@ public abstract class Platter
 		WINDOW.setMinHeight(MIN_WINDOW_HEIGHT);
 		WINDOW.initModality(Modality.APPLICATION_MODAL);
 
-		if (UNIBODY) WINDOW.initStyle(StageStyle.UNDECORATED);
+		if (UNIBODY_WINDOW) WINDOW.initStyle(StageStyle.UNDECORATED);
 
 		WINDOW.setScene(FIRST_SCREEN);
 		WINDOW.showAndWait();
