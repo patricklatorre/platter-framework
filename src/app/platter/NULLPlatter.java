@@ -31,7 +31,5 @@ public class NULLPlatter extends Platter
 	}
 
 	@Override
-	public int prepare() {
-		return 0;
-	}
+	public void configure() {}
 }

@@ -13,7 +13,7 @@ public abstract class Platter
 	/* DEFAULT SECTION */
 	protected Section nullSection;
 
-	/* ORDER ATTRIBUTES */
+	/* CONFIGURABLES */
 	protected Stage WINDOW;
 	protected Scene FIRST_SCREEN;
 
@@ -26,11 +26,10 @@ public abstract class Platter
 
 
 
-	public int serve() {
+	public void serve() {
 		order();
-		prepare();
+		configure();
 		cook();
-		return 0;
 	}
 
 	private void order() {
@@ -41,7 +40,7 @@ public abstract class Platter
 		UNIBODY = false;
 	}
 
-	public abstract int prepare();
+	public abstract void configure();
 
 	public int cook() {
 		WINDOW = new Stage();
