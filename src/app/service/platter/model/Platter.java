@@ -3,6 +3,7 @@ package app.service.platter.model;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public abstract class Platter
 {
@@ -13,13 +14,15 @@ public abstract class Platter
 	protected Section nullSection;
 
 	/* ORDER ATTRIBUTES */
-	protected Stage window;
-	protected Scene firstScreen;
+	protected Stage WINDOW;
+	protected Scene FIRST_SCREEN;
 
-	protected String title;
+	protected String WINDOW_TITLE;
 
-	protected double minWindowWidth;
-	protected double minWindowHeight;
+	protected double MIN_WINDOW_WIDTH;
+	protected double MIN_WINDOW_HEIGHT;
+
+	protected boolean UNIBODY;
 
 
 
@@ -31,25 +34,28 @@ public abstract class Platter
 	}
 
 	private void order() {
-		title = "Platter";
-		firstScreen = nullSection.getInternalScreen();
-		minWindowWidth = 1;
-		minWindowHeight = 1;
+		WINDOW_TITLE = "Platter";
+		FIRST_SCREEN = nullSection.getInternalScreen();
+		MIN_WINDOW_WIDTH = 1;
+		MIN_WINDOW_HEIGHT = 1;
+		UNIBODY = false;
 	}
 
 	public abstract int prepare();
 
 	public int cook() {
-		window = new Stage();
+		WINDOW = new Stage();
 
-		window.setTitle(title);
-		window.setMinWidth(minWindowWidth);
-		window.setMinHeight(minWindowHeight);
-		window.initModality(Modality.APPLICATION_MODAL);
+		WINDOW.setTitle(WINDOW_TITLE);
 
-		/* APP WINDOW DISPLAY */
-		window.setScene(firstScreen);
-		window.showAndWait();
+		WINDOW.setMinWidth(MIN_WINDOW_WIDTH);
+		WINDOW.setMinHeight(MIN_WINDOW_HEIGHT);
+		WINDOW.initModality(Modality.APPLICATION_MODAL);
+
+		if (UNIBODY) WINDOW.initStyle(StageStyle.UNDECORATED);
+
+		WINDOW.setScene(FIRST_SCREEN);
+		WINDOW.showAndWait();
 
 		return 0;
 	}
