@@ -27,12 +27,12 @@ public abstract class Platter
 
 
 	public void serve() {
-		order();
+		defaultConfigure();
 		configure();
 		cook();
 	}
 
-	private void order() {
+	private void defaultConfigure() {
 		WINDOW_TITLE = "Platter";
 		FIRST_SCREEN = nullSection.getInternalScreen();
 		MIN_WINDOW_WIDTH = 1;
