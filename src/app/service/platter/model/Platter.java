@@ -8,7 +8,7 @@ import javafx.stage.StageStyle;
 public abstract class Platter
 {
 	/* You can place static strings for FXML URLs here */
-	public static String NULL_URL = "/app/view/NULL/Default.fxml";
+	public static String NULL_SCREEN = "/app/view/NULL/Default.fxml";
 
 	/* DEFAULT SECTION */
 	protected Section nullSection;
@@ -33,6 +33,8 @@ public abstract class Platter
 	}
 
 	private void defaultConfigure() {
+		nullSection = new Section(NULL_SCREEN, 300, 300);
+
 		WINDOW_TITLE = "Platter";
 		FIRST_SCREEN = nullSection.getInternalScreen();
 		MIN_WINDOW_WIDTH = 1;
