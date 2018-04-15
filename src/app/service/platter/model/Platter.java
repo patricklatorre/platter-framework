@@ -1,5 +1,6 @@
 package app.service.platter.model;
 
+import app.servicedock.NULL.NULLDock;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -7,6 +8,9 @@ import javafx.stage.StageStyle;
 
 public abstract class Platter
 {
+	/* SERVICE DOCK */
+	protected ServiceDock SERVICE_DOCK;
+
 	/* You can place static strings for FXML URLs here */
 	public static String NULL_SCREEN = "/app/view/NULL/Default.fxml";
 
@@ -34,6 +38,7 @@ public abstract class Platter
 
 	private void defaultConfigure() {
 		nullSection = new Section(NULL_SCREEN, 300, 300);
+		SERVICE_DOCK = new NULLDock();
 
 		WINDOW_TITLE = "Platter";
 		FIRST_SCREEN = nullSection.getInternalScreen();
@@ -45,6 +50,7 @@ public abstract class Platter
 	public abstract void configure();
 
 	public int cook() {
+		SERVICE_DOCK.initializeServices();
 		WINDOW = new Stage();
 
 		WINDOW.setTitle(WINDOW_TITLE);
