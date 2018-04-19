@@ -34,7 +34,6 @@ public class SamplePlatter extends Platter
 		* */
 
 
-
 		/*
 		* INITIALIZE SERVICEDOCKS
 		*
