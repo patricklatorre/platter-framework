@@ -13,18 +13,14 @@ public class SamplePlatter extends Platter
 	* private Section sampleSection;
 	* */
 
-
-
 	/*
-	* DECLARE EXTERNAL SCREENS
-	* If a multi-layout screen is needed, an external screen should be used to contain the layouts.
+	* INSTALL SERVICE DOCKS
+	* Service docks are a facade that binds services to other services. A service dock also makes
+	* updating modules simpler. Each type of service should have its own dock.
 	*
 	* sample:
-	* private Scene sampleScreen;
+	* private SampleDock sampleDock;
 	* */
-
-
-
 
 	public SamplePlatter() {
 		/*
@@ -37,23 +33,19 @@ public class SamplePlatter extends Platter
 		* sampleSection = new Section("/app/view/Sample/Default.fxml");
 		* */
 
-		/* INITIALIZE EXTERNAL SCREENS */
+
+
+		/*
+		* INITIALIZE SERVICEDOCKS
+		*
+		* sample:
+		* sampleDock = new SampleDock();
+		* */
 
 	}
 
 	@Override
 	public void configure() {
-		/*
-		* SET SERVICE DOCK
-		* Instantiate the service dock here. If no service dock is instantiated, the platter will
-		* default to the NULLDock.
-		*
-		* sample:
-		* serviceDock = new SampleDock();
-		* */
-
-
-
 		/*
 		* CONFIGURABLES
 		* Set specific variables to quickly configure the application. If no configurables are set,
@@ -63,6 +55,5 @@ public class SamplePlatter extends Platter
 		* WINDOW_TITLE = "Sample";
 		* GRIPPY_WINDOW = true;
 		* */
-
 	}
 }
