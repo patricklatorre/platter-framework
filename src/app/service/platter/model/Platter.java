@@ -59,11 +59,35 @@ public abstract class Platter
 		WINDOW.setMinHeight(MIN_WINDOW_HEIGHT);
 		WINDOW.initModality(Modality.APPLICATION_MODAL);
 
-		if (UNIBODY_WINDOW) WINDOW.initStyle(StageStyle.UNDECORATED);
+		if (UNIBODY_WINDOW) {
+			WINDOW.initStyle(StageStyle.UNDECORATED);
+		}
 
-		WINDOW.setScene(FIRST_SCREEN);
+		setScreen(FIRST_SCREEN);
 		WINDOW.showAndWait();
 
 		return 0;
+	}
+
+
+
+	private class Delta { double x, y; }
+	public void setScreen(Scene screen) {
+		if (UNIBODY_WINDOW) {
+			// allow the clock background to be used to drag the clock around.
+			final Delta dragDelta = new Delta();
+
+			screen.getRoot().setOnMousePressed(event -> {
+				// record a delta distance for the drag and drop operation.
+				dragDelta.x = WINDOW.getX() - event.getScreenX();
+				dragDelta.y = WINDOW.getY() - event.getScreenY();
+			});
+			screen.getRoot().setOnMouseDragged(event -> {
+				WINDOW.setX(event.getScreenX() + dragDelta.x);
+				WINDOW.setY(event.getScreenY() + dragDelta.y);
+			});
+		}
+
+		WINDOW.setScene(screen);
 	}
 }
