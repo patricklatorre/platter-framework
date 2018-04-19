@@ -1,5 +1,6 @@
 package app.service.platter.model;
 
+import app.service.platter.window.WindowGrip;
 import app.servicedock.NULL.NULLDock;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
@@ -26,8 +27,8 @@ public abstract class Platter
 	protected double MIN_WINDOW_WIDTH;
 	protected double MIN_WINDOW_HEIGHT;
 
-	protected boolean UNIBODY_WINDOW;
-
+	protected boolean BORDERLESS_WINDOW;
+	protected boolean GRIPPY_WINDOW;
 
 
 	public void serve() {
@@ -44,7 +45,8 @@ public abstract class Platter
 		FIRST_SCREEN = nullSection.getInternalScreen();
 		MIN_WINDOW_WIDTH = 1;
 		MIN_WINDOW_HEIGHT = 1;
-		UNIBODY_WINDOW = false;
+		BORDERLESS_WINDOW = false;
+		GRIPPY_WINDOW = false;
 	}
 
 	public abstract void configure();
@@ -59,35 +61,17 @@ public abstract class Platter
 		WINDOW.setMinHeight(MIN_WINDOW_HEIGHT);
 		WINDOW.initModality(Modality.APPLICATION_MODAL);
 
-		if (UNIBODY_WINDOW) {
+		if (BORDERLESS_WINDOW) {
 			WINDOW.initStyle(StageStyle.UNDECORATED);
 		}
 
-		setScreen(FIRST_SCREEN);
+		if (GRIPPY_WINDOW) {
+			WindowGrip.rubberize(WINDOW, FIRST_SCREEN);
+		}
+
+		WINDOW.setScene(FIRST_SCREEN);
 		WINDOW.showAndWait();
 
 		return 0;
-	}
-
-
-
-	private class Delta { double x, y; }
-	public void setScreen(Scene screen) {
-		if (UNIBODY_WINDOW) {
-			// allow the clock background to be used to drag the clock around.
-			final Delta dragDelta = new Delta();
-
-			screen.getRoot().setOnMousePressed(event -> {
-				// record a delta distance for the drag and drop operation.
-				dragDelta.x = WINDOW.getX() - event.getScreenX();
-				dragDelta.y = WINDOW.getY() - event.getScreenY();
-			});
-			screen.getRoot().setOnMouseDragged(event -> {
-				WINDOW.setX(event.getScreenX() + dragDelta.x);
-				WINDOW.setY(event.getScreenY() + dragDelta.y);
-			});
-		}
-
-		WINDOW.setScene(screen);
 	}
 }

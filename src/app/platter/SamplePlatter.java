@@ -60,10 +60,9 @@ public class SamplePlatter extends Platter
 		* the platter will use the default values.
 		*
 		* sample:
-		* UNIBODY_WINDOW = true;
 		* WINDOW_TITLE = "Sample";
+		* GRIPPY_WINDOW = true;
 		* */
-
 
 	}
 }
