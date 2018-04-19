@@ -14,9 +14,9 @@ public class SamplePlatter extends Platter
 	* */
 
 	/*
-	* INSTALL SERVICE DOCKS
-	* Service docks are a facade that binds services to other services. A service dock also makes
-	* updating modules simpler. Each type of service should have its own dock.
+	* INSTALL DOCKS
+	* Docks are a facade that binds all services and listeners to each other.
+	* Each dock should not rely on one another.
 	*
 	* sample:
 	* private SampleDock sampleDock;
@@ -35,7 +35,7 @@ public class SamplePlatter extends Platter
 
 
 		/*
-		* INITIALIZE SERVICEDOCKS
+		* INITIALIZE DOCKS
 		*
 		* sample:
 		* sampleDock = new SampleDock();
@@ -53,6 +53,12 @@ public class SamplePlatter extends Platter
 		* sample:
 		* WINDOW_TITLE = "Sample";
 		* GRIPPY_WINDOW = true;
+		* */
+
+
+		/*
+		* DOCK CONFIGURABLES
+		* Dock services can be called and binded here.
 		* */
 	}
 }
