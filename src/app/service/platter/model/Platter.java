@@ -20,15 +20,22 @@ public abstract class Platter
 	protected PlatterCfg cfg;
 
 	public Platter serve() {
-		setConfiguration().cook();
+		initDefaultSection();
+		initDefaultConfig();
+		initializeSections();
+		initializeDocks();
+		prepare();
+		cook();
 		return this;
 	}
 
-	public Platter setConfiguration() {
+	protected void initDefaultSection() {
 		nullSection = Section.create()
 				.fromFXML(NULL_SCREEN)
 				.withInternalScreen(300, 300);
+	}
 
+	protected void initDefaultConfig() {
 		cfg = new PlatterCfg()
 				.setWindowTitle("Platter")
 				.setFirstScreen(nullSection.getInternalScreen())
@@ -38,17 +45,19 @@ public abstract class Platter
 				.setCloseToProceed(false)
 				.setBorderlessWindow(false)
 				.setGrippyWindow(false);
-
-		return this;
 	}
 
-	public Platter cook() {
+	public abstract void initializeSections();
+	public abstract void initializeDocks();
+	public abstract void editCfg();
+	public abstract void prepare();
+
+	public void cook() {
 		WINDOW = new Stage();
 		refreshCfg();
-		return this;
 	}
 
-	public Platter refreshCfg() {
+	public void refreshCfg() {
 		WINDOW.setTitle(
 				cfg.getWindowTitle()
 		);
@@ -77,7 +86,5 @@ public abstract class Platter
 
 
 		WINDOW.setScene(cfg.getFirstScreen());
-
-		return this;
 	}
 }

@@ -22,24 +22,53 @@ public class SamplePlatter extends Platter
 	* private SampleDock sampleDock;
 	* */
 
-	public SamplePlatter() {
+	@Override
+	public void initializeSections() {
 		/*
 		* INITIALIZE SECTIONS
+		* Any section that is declared should be initialized here with the builder method.
 		*
-		* >> To activate the internal screen, simply specify the width and height of the screen:
-		* sampleSection = new Section("/app/view/Sample/Default.fxml", 300, 300);
+		* sample:
+		* sampleSection = Platter.create().fromFXML("/app/view/NULL/Default.fxml");
 		*
-		* >> If using an external screen:
-		* sampleSection = new Section("/app/view/Sample/Default.fxml");
+		* To install an internal screen, simply add the withInternalScreen() method
+		* sample:
+		* sampleSection = Platter.create().fromFXML("/app/view/NULL/Default.fxml").withInternalScreen(width, height);
 		* */
+	}
 
-
+	@Override
+	public void initializeDocks() {
 		/*
 		* INITIALIZE DOCKS
-		*
 		* sample:
 		* sampleDock = new SampleDock();
 		* */
+	}
+
+	@Override
+	public void editCfg() {
+		/*
+		* EDIT CONFIGURATIONS
+		*
+		* Quick configuration edits supported by Platter can be made here by editing the cfg attribute. You should
+		* also set the first screen here.
+		*
+		* sample:
+		* cfg
+		* 	.setFirstScreen(sampleSection.getInternalScreen())
+		* 	.setWindowTitle("Just Another App")
+		* 	.setCloseToProceed(true);
+		* */
+	}
+
+	@Override
+	public void prepare() {
+		/*
+		* PREPARE METHOD
+		* Any additional initializations/edits/processes should be made here.
+		* */
+
 
 	}
 }
