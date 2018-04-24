@@ -22,6 +22,14 @@ public class SamplePlatter extends Platter
 	* private SampleDock sampleDock;
 	* */
 
+	/*
+	* EXTRAS
+	* If the platter is expected to return a value (a modal for example), the serve() method should not be used
+	* to ready the application. Instead, create a new method with a different return type, while still calling all
+	* the init methods.
+	*
+	* */
+
 	@Override
 	public void initializeSections() {
 		/*

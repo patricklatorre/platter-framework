@@ -26,6 +26,7 @@ public abstract class Platter
 		initializeDocks();
 		prepare();
 		cook();
+		display();
 		return this;
 	}
 
@@ -78,13 +79,15 @@ public abstract class Platter
 		if (cfg.isGrippyWindow()) {
 			WindowGrip.rubberize(WINDOW, cfg.getFirstScreen());
 		}
+
+		WINDOW.setScene(cfg.getFirstScreen());
+	}
+
+	public void display() {
 		if (cfg.isCloseToProceed()) {
 			WINDOW.showAndWait();
 		} else {
 			WINDOW.show();
 		}
-
-
-		WINDOW.setScene(cfg.getFirstScreen());
 	}
 }
