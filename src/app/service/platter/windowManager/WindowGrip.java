@@ -1,4 +1,4 @@
-package app.service.platter.window;
+package app.service.platter.windowManager;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;

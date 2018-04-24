@@ -42,23 +42,4 @@ public class SamplePlatter extends Platter
 		* */
 
 	}
-
-	@Override
-	public void configure() {
-		/*
-		* CONFIGURABLES
-		* Set specific variables to quickly configure the application. If no configurables are set,
-		* the platter will use the default values.
-		*
-		* sample:
-		* WINDOW_TITLE = "Sample";
-		* GRIPPY_WINDOW = true;
-		* */
-
-
-		/*
-		* DOCK CONFIGURABLES
-		* Dock services can be called and binded here.
-		* */
-	}
 }

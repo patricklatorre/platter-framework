@@ -1,72 +1,83 @@
 package app.service.platter.model;
 
-import app.service.platter.window.WindowGrip;
-import javafx.scene.Scene;
+import app.service.platter.cfg.PlatterCfg;
+import app.service.platter.sectionManager.Section;
+import app.service.platter.windowManager.WindowGrip;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public abstract class Platter
 {
+	protected Stage WINDOW;
 
-	/* You can place static strings for FXML URLs here */
-	public static String NULL_SCREEN = "/app/view/NULL/Default.fxml";
+	public final static String NULL_SCREEN = "/app/view/NULL/Default.fxml";
 
 	/* DEFAULT SECTION */
 	protected Section nullSection;
 
-	/* CONFIGURABLES */
-	protected Stage WINDOW;
-	protected Scene FIRST_SCREEN;
+	/* CONFIGURATION */
+	protected PlatterCfg cfg;
 
-	protected String WINDOW_TITLE;
-
-	protected double MIN_WINDOW_WIDTH;
-	protected double MIN_WINDOW_HEIGHT;
-
-	protected boolean BORDERLESS_WINDOW;
-	protected boolean GRIPPY_WINDOW;
-
-
-	public void serve() {
-		defaultConfigure();
-		configure();
-		cook();
+	public Platter serve() {
+		setConfiguration().cook();
+		return this;
 	}
 
-	private void defaultConfigure() {
-		nullSection = new Section(NULL_SCREEN, 300, 300);
+	public Platter setConfiguration() {
+		nullSection = Section.create()
+				.fromFXML(NULL_SCREEN)
+				.withInternalScreen(300, 300);
 
-		WINDOW_TITLE = "Platter";
-		FIRST_SCREEN = nullSection.getInternalScreen();
-		MIN_WINDOW_WIDTH = 1;
-		MIN_WINDOW_HEIGHT = 1;
-		BORDERLESS_WINDOW = false;
-		GRIPPY_WINDOW = false;
+		cfg = new PlatterCfg()
+				.setWindowTitle("Platter")
+				.setFirstScreen(nullSection.getInternalScreen())
+				.setMinWindowHeight(1)
+				.setMinWindowWidth(1)
+				.setModality(Modality.NONE)
+				.setCloseToProceed(false)
+				.setBorderlessWindow(false)
+				.setGrippyWindow(false);
+
+		return this;
 	}
 
-	public abstract void configure();
-
-	public int cook() {
+	public Platter cook() {
 		WINDOW = new Stage();
+		refreshCfg();
+		return this;
+	}
 
-		WINDOW.setTitle(WINDOW_TITLE);
+	public Platter refreshCfg() {
+		WINDOW.setTitle(
+				cfg.getWindowTitle()
+		);
+		WINDOW.setMinWidth(
+				cfg.getMinWindowWidth()
+		);
+		WINDOW.setMinHeight(
+				cfg.getMinWindowHeight()
+		);
+		WINDOW.initModality(
+				cfg.getModality()
+		);
 
-		WINDOW.setMinWidth(MIN_WINDOW_WIDTH);
-		WINDOW.setMinHeight(MIN_WINDOW_HEIGHT);
-		WINDOW.initModality(Modality.APPLICATION_MODAL);
 
-		if (BORDERLESS_WINDOW) {
+		if (cfg.isBorderlessWindow()) {
 			WINDOW.initStyle(StageStyle.UNDECORATED);
 		}
-
-		if (GRIPPY_WINDOW) {
-			WindowGrip.rubberize(WINDOW, FIRST_SCREEN);
+		if (cfg.isGrippyWindow()) {
+			WindowGrip.rubberize(WINDOW, cfg.getFirstScreen());
+		}
+		if (cfg.isCloseToProceed()) {
+			WINDOW.showAndWait();
+		} else {
+			WINDOW.show();
 		}
 
-		WINDOW.setScene(FIRST_SCREEN);
-		WINDOW.showAndWait();
 
-		return 0;
+		WINDOW.setScene(cfg.getFirstScreen());
+
+		return this;
 	}
 }
