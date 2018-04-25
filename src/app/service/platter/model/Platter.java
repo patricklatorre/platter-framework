@@ -7,11 +7,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public abstract class Platter
+public abstract class Platter implements Sectioned, WindowPrep
 {
-	protected Stage WINDOW;
-
-	public final static String NULL_SCREEN = "/app/view/NULL/Default.fxml";
+	protected Stage mainWindow;
 
 	/* DEFAULT SECTION */
 	protected Section nullSection;
@@ -19,24 +17,13 @@ public abstract class Platter
 	/* CONFIGURATION */
 	protected PlatterCfg cfg;
 
-	public Platter serve() {
-		initDefaultSection();
-		initDefaultConfig();
-		initializeSections();
-		initializeDocks();
-		prepare();
-		cook();
-		display();
-		return this;
-	}
-
-	protected void initDefaultSection() {
+	public void loadDefaultSection() {
 		nullSection = Section.create()
-				.fromFXML(NULL_SCREEN)
+				.fromFXML("/app/view/NULL/Default.fxml")
 				.withInternalScreen(300, 300);
 	}
 
-	protected void initDefaultConfig() {
+	public void loadDefaultConfig() {
 		cfg = new PlatterCfg()
 				.setWindowTitle("Platter")
 				.setFirstScreen(nullSection.getInternalScreen())
@@ -48,46 +35,51 @@ public abstract class Platter
 				.setGrippyWindow(false);
 	}
 
-	public abstract void initializeSections();
-	public abstract void initializeDocks();
-	public abstract void editCfg();
-	public abstract void prepare();
-
 	public void cook() {
-		WINDOW = new Stage();
+		mainWindow = new Stage();
 		refreshCfg();
 	}
 
+	public void showWindow() {
+		if (cfg.isCloseToProceed()) {
+			mainWindow.showAndWait();
+		} else {
+			mainWindow.show();
+		}
+	}
+
 	public void refreshCfg() {
-		WINDOW.setTitle(
+		mainWindow.setTitle(
 				cfg.getWindowTitle()
 		);
-		WINDOW.setMinWidth(
+		mainWindow.setMinWidth(
 				cfg.getMinWindowWidth()
 		);
-		WINDOW.setMinHeight(
+		mainWindow.setMinHeight(
 				cfg.getMinWindowHeight()
 		);
-		WINDOW.initModality(
+		mainWindow.initModality(
 				cfg.getModality()
 		);
 
 
 		if (cfg.isBorderlessWindow()) {
-			WINDOW.initStyle(StageStyle.UNDECORATED);
+			mainWindow.initStyle(StageStyle.UNDECORATED);
 		}
 		if (cfg.isGrippyWindow()) {
-			WindowGrip.rubberize(WINDOW, cfg.getFirstScreen());
+			WindowGrip.rubberize(mainWindow, cfg.getFirstScreen());
 		}
 
-		WINDOW.setScene(cfg.getFirstScreen());
+		mainWindow.setScene(cfg.getFirstScreen());
 	}
 
-	public void display() {
-		if (cfg.isCloseToProceed()) {
-			WINDOW.showAndWait();
-		} else {
-			WINDOW.show();
-		}
+	public void serve() {
+		loadDefaultSection();
+		loadDefaultConfig();
+		loadSections();
+		loadDocks();
+		prepare();
+		cook();
+		showWindow();
 	}
 }

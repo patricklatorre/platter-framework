@@ -9,7 +9,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-		Platter app = new SamplePlatter().serve();
+		Platter app = new SamplePlatter();
+		app.serve();
     }
 
     public static void main(String[] args) {

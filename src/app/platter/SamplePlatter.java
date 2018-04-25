@@ -27,11 +27,10 @@ public class SamplePlatter extends Platter
 	* If the platter is expected to return a value (a modal for example), the serve() method should not be used
 	* to ready the application. Instead, create a new method with a different return type, while still calling all
 	* the init methods.
-	*
 	* */
 
 	@Override
-	public void initializeSections() {
+	public void loadSections() {
 		/*
 		* INITIALIZE SECTIONS
 		* Any section that is declared should be initialized here with the builder method.
@@ -46,7 +45,7 @@ public class SamplePlatter extends Platter
 	}
 
 	@Override
-	public void initializeDocks() {
+	public void loadDocks() {
 		/*
 		* INITIALIZE DOCKS
 		* sample:
@@ -55,7 +54,7 @@ public class SamplePlatter extends Platter
 	}
 
 	@Override
-	public void editCfg() {
+	public void configure() {
 		/*
 		* EDIT CONFIGURATIONS
 		*
@@ -76,7 +75,5 @@ public class SamplePlatter extends Platter
 		* PREPARE METHOD
 		* Any additional initializations/edits/processes should be made here.
 		* */
-
-
 	}
 }
