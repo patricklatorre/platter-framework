@@ -3,10 +3,10 @@ package app.controller.NULL;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import app.service.platter.model.Controller;
+import app.service.platter.model.GenericController;
 import javafx.fxml.FXML;
 
-public class Default extends Controller
+public class Default extends GenericController
 {
 	@FXML
 	private ResourceBundle resources;

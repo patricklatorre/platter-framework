@@ -1,6 +1,6 @@
 package app.service.platter.sectionManager;
 
-import app.service.platter.model.Controller;
+import app.service.platter.model.GenericController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,7 +11,7 @@ public class Section
 {
 	private Scene internalScreen;
 	private Parent layout;
-	private Controller controller;
+	private GenericController controller;
 
 	public Section() {
 		this.layout = null;
@@ -48,7 +48,7 @@ public class Section
 		return layout;
 	}
 
-	public Controller getController() {
+	public GenericController getController() {
 		return controller;
 	}
 }
