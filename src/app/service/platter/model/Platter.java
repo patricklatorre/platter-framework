@@ -36,7 +36,6 @@ public abstract class Platter implements Sectioned, WindowPrep
 	}
 
 	public void cook() {
-		mainWindow = new Stage();
 		refreshCfg();
 	}
 
@@ -78,6 +77,7 @@ public abstract class Platter implements Sectioned, WindowPrep
 		loadDefaultConfig();
 		loadSections();
 		loadDocks();
+		configure();
 		prepare();
 		cook();
 		showWindow();
