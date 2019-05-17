@@ -1,3 +1,0 @@
-# Platter
-
-*still a WIP*
